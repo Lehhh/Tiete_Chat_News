@@ -84,7 +84,7 @@ public class TelaInicial extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
+        setTitle("Tiete Chat News");
         jLabelChat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelChat.setText("CHAT");
 
