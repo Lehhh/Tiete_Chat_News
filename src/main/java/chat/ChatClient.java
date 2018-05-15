@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -22,16 +23,17 @@ public class ChatClient {
 
         //
         TelaInicial tI = new TelaInicial();
-//        TelaInicial.textFieldForMsg;// = TelaInicial.textFieldForMsg;
-//        JLabel jLabelChat = null; //= TelaInicial.jLabelChat;
-//        JTextArea chatArea = null;// = TelaInicial.chatArea;;
+        String str ="";
 
+        String password = "";
         //
-        new TelaInicial().setVisible(true);
+        try {
+        	
+        
         String ipAddress = JOptionPane.showInputDialog(
                 tI,
-                "Enter IP Address:",
-                "IP Address Required!!",
+                "Digite seu ip",
+                "É necessário digiar seu ip!!",
                 JOptionPane.PLAIN_MESSAGE);
 
         Socket soc = new Socket(ipAddress, 8081);
@@ -39,37 +41,53 @@ public class ChatClient {
         tI.in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 
         tI.out = new PrintWriter(soc.getOutputStream(), true);
+        }
+        catch(Exception e) {
+        	startChat();
+        }
         
-         
         while (true) {
 
-            String str = tI.in.readLine();
+            str = tI.in.readLine();
 
             if (str.equals("NAMEREQUIRED")) {
 
                 String name = JOptionPane.showInputDialog(
                         tI,
-                        "Enter a unique name:",
-                        "Name Required!!",
+                        "Insira seu usuário:",
+                        "Usuário!!",
                         JOptionPane.PLAIN_MESSAGE);
 
                 tI.out.println(name);
 
-            } else if (str.equals("NAMEALREADYEXISTS")) {
+            } else if (str.equals("Usuario não Existe")) {
 
                 String name = JOptionPane.showInputDialog(
                         tI,
-                        "Enter another name:",
-                        "Name Already Exits!!",
+                        "Tente Novamente:",
+                        "Usuário não existe",
                         JOptionPane.WARNING_MESSAGE);
 
                 tI.out.println(name);
 
             } else if (str.startsWith("NAMEACCEPTED")) {
+            	
+            	JLabel label = new JLabel("Digite a senha:");
+            	JPasswordField jpf = new JPasswordField();
+            	JOptionPane.showConfirmDialog(null,
+            	new Object[]{label, jpf}, "Password:",
+            	JOptionPane.OK_CANCEL_OPTION); 
+            	password = jpf.getText();
+            	System.out.println(password);
+            	
+                tI.out.println(password);
+                str = tI.in.readLine();
+                if (str.startsWith("PasswordACCEPT")) {
+            	 new TelaInicial().setVisible(true);
                 tI.chatArea.setEditable(false);
                 tI.textFieldForMsg.setEditable(true);
-                tI.jLabelChat.setText("You are logged in as: " + str.substring(12));
-                
+                tI.jLabelChat.setText("You are logged in as: " + str.substring(14));
+                }
 
             } else {
 
@@ -78,7 +96,6 @@ public class ChatClient {
             }
 
         }
-        
         
     }
 
