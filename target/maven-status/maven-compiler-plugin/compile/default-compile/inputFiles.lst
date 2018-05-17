@@ -1,5 +1,11 @@
-/home/lshiniti/Downloads/bibliotecas ja/HibernateMaven/src/main/java/model/Words.java
-/home/lshiniti/Downloads/bibliotecas ja/HibernateMaven/src/main/java/com/jcg/hibernate/maven/ConversationHandler.java
-/home/lshiniti/Downloads/bibliotecas ja/HibernateMaven/src/main/java/com/jcg/hibernate/maven/MainClass.java
-/home/lshiniti/Downloads/bibliotecas ja/HibernateMaven/src/main/java/controller/MysqlConnect.java
-/home/lshiniti/Downloads/bibliotecas ja/HibernateMaven/src/main/java/model/User.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/controller/MysqlConnect.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/requests/Requests.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/model/Words.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/windows/AddWord.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/windows/AddUser.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/requests/Strings.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/windows/TelaInicial.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/requests/TratamentodoHTML.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/windows/MainClass.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/chat/ChatClient.java
+/home/lshiniti/Documents/Chat_Tiete_News/src/main/java/model/User.java

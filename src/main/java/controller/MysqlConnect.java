@@ -1,11 +1,10 @@
 package controller;
 
-import java.util.Date;
+
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.swing.JOptionPane;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,6 +14,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import model.User;
 import model.Words;
+
 
 //Classes necessárias para uso de Banco de dados //
 
@@ -39,25 +39,24 @@ public class MysqlConnect {
 		return sessionFactoryObj;
 	}
 
-	public void insertUser(User user, List<User> userList) {
+	public void insertUser(User user) {
 
 		try {
+			System.out.println("tentar conectar");
 			sessionObj = buildSessionFactory().openSession();
 			System.out.println("foi a conexao");
 			sessionObj.beginTransaction();
-			boolean test = false;
-			for(int i=0 ; i<userList.size();i++) {
-				if(user.getUserName().equals(userList.get(i).getUserName())) {
-					test = true;
-				}
-			}
-			if(test==true) {
-				System.out.println("Usuario já existente");
+			List<User> arrUser = sessionObj.createCriteria(User.class).list();
+			
+			if(!(arrUser.contains(user))) {
+				sessionObj.save(user);
+				
 			}
 			else {
-			sessionObj.save(user);
-			sessionObj.getTransaction().commit();
+				JOptionPane.showMessageDialog(null, "Usuário já existente");
 			}
+			sessionObj.getTransaction().commit();
+			
 		} catch (Exception sqlException) {
 			if (null != sessionObj.getTransaction()) {
 				System.out.println("Foi realizado RollBack por erro falta de informação");
@@ -78,7 +77,13 @@ public class MysqlConnect {
 			sessionObj = buildSessionFactory().openSession();
 			System.out.println("foi a conexao");
 			sessionObj.beginTransaction();
-			sessionObj.save(words);
+			List<Words> arrWords = sessionObj.createCriteria(Words.class).list();
+			if(!(arrWords.contains(words))) {
+				sessionObj.save(words);
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Palavra já foi bloqueada");
+			}
 			sessionObj.getTransaction().commit();
 		} catch (Exception sqlException) {
 			if (null != sessionObj.getTransaction()) {
