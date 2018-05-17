@@ -97,7 +97,7 @@ class ConversationHandler extends Thread {
 					if(password.equals(userList.get(i).getPassword())){
 						acceptPassword = true;
 						out.println("PasswordACCEPT" + userList.get(i).getUserName());
-						ChatServer.printWriters.add(out);
+						MainClass.printWriters.add(out);
 						break;
 					}
 					else {
@@ -129,7 +129,7 @@ class ConversationHandler extends Thread {
 						}
 
 						pw.println(name + ": " + message);
-						for (PrintWriter writer : ChatServer.printWriters) {
+						for (PrintWriter writer : MainClass.printWriters) {
 
 							writer.println(name + ": " + message);
 

@@ -1,0 +1,5 @@
+model/Words.class
+model/User.class
+controller/MysqlConnect.class
+com/jcg/hibernate/maven/ConversationHandler.class
+com/jcg/hibernate/maven/MainClass.class
