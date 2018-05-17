@@ -37,7 +37,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.jcg.hibernate.maven.MainClass</mainClass>
+							<mainClass>windows.MainClass</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
