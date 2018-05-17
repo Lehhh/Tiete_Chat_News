@@ -50,13 +50,16 @@ class ConversationHandler extends Thread {
 
 	}
 
-	public void run(List<User> userList, List<Words> wordsList) {
+	public void run() {
+		
+		
 		MysqlConnect msql = new MysqlConnect();
 		sessionObj = msql.buildSessionFactory().openSession();
 		System.out.println("carregando usuários");
 		sessionObj.beginTransaction();
+		List<User> userList = sessionObj.createCriteria(User.class).list();
+		List<Words> wordsList = sessionObj.createCriteria(Words.class).list();
 		sessionObj.close();
-
 		try {
 
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -97,6 +100,7 @@ class ConversationHandler extends Thread {
 					if(password.equals(userList.get(i).getPassword())){
 						acceptPassword = true;
 						out.println("PasswordACCEPT" + userList.get(i).getUserName());
+						MainClass.userNames.add(name);
 						MainClass.printWriters.add(out);
 						break;
 					}

@@ -22,7 +22,7 @@ public class MainClass {
 	static Session sessionObj;
 	static SessionFactory sessionFactoryObj;
 
-//	static ArrayList<String> userNames = new ArrayList<String>();
+	static ArrayList<String> userNames = new ArrayList<String>();
 
 	static ArrayList<PrintWriter> printWriters = new ArrayList<PrintWriter>();
 
@@ -52,8 +52,7 @@ public class MainClass {
 			System.out.println("Connection established");
 
 			ConversationHandler handler = new ConversationHandler(soc);
-
-			handler.run(userList, wordsList);
+			handler.start();
 
 		}
 
